@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shared Fitness Database</title>
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <!--Materialize CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+</head>
+<body>
+    <header>
+            <nav>
+                <div class="nav-wrapper black">
+                    <a href="#" class="brand-logo">SFDb</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Search</a></li>
+                        {% if 'username' not in session %}
+                            <li><a href="#">Register</a></li>
+                            <li><a href="#">Log In</a></li>
+                        {% else %}
+                            <li><a href="#">Add Exercise</a></li>
+                            <li><a href="#">My Account</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Search</a></li>
+                        {% if 'username' not in session %}
+                            <li><a href="#">Register</a></li>
+                            <li><a href="#">Log In</a></li>
+                        {% else %}
+                            <li><a href="#">Add Exercise</a></li>
+                            <li><a href="#">My Account</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+    </header>
+    <div class="container">
+    {% block content %}{% endblock %}
+</div>
+    <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div>Martin Crowley - &copy;2019</div>
+            </div>
+            <div class="col s12 m6">
+                <a href="https://github.com/Mcrowley93" target="_blank"><i class="fab fa-github social-icon-footer"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square social-icon-footer"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social-icon-footer"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
