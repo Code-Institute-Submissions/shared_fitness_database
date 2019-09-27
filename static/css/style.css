@@ -1,0 +1,25 @@
+/* GENERAL */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Exo 2', sans-serif;
+}
+main {
+    flex: 1 0 auto;
+    color: white;
+    background-image: url('../images/dumbells_background.jpg');
+    background-size: cover;
+}
+/* COLORS */
+.nav-wrapper,
+.page-footer{
+    background-color: black;
+    color: white;
+}
+.side-nav {
+    background-color: #404040;
+}
+.side-nav li>a {
+    color: white;
+}
