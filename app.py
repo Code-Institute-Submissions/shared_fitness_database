@@ -14,9 +14,20 @@ mongo = PyMongo(app)
 
 """ROUTES"""
 
+""" INDEX PAGE """
 @app.route('/')
-def Hello():
-    return "Hello there, this is my 3rd milestone project"
+@app.route('/home', methods=['POST', 'GET'])
+def index():
+    exercises = mongo.db.exercises.find()
+    return render_template('index.html', exercises=exercises)
+
+
+@app.route('/search', methods=['POST', 'GET'])
+def search():
+    exercises = mongo.db.exercises.find()
+    return render_template('search.html', exercises=exercises)
+
+
 
 app.run(host=os.environ.get('IP', '127.0.0.1'),
         port=int(os.environ.get('PORT', '8080')),
