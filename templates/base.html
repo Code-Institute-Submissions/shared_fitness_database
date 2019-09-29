@@ -12,7 +12,7 @@
         <!--Materialize CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!--CSS-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
         <!--<style>
 
             /* GENERAL */
@@ -62,8 +62,16 @@
                         <li class="list-items"><a href="{{ url_for('search') }}">Search</a></li>
                         {% endif %}
                         {% if 'username' not in session %}
-                        <li class="list-items"><a href="#">Register</a></li>
-                        <li class="list-items"><a href="#">Log In</a></li>
+                            {% if 'register' in request.path %}
+                            <li class="list-items active"><a href="{{ url_for('register') }}">Register</a></li>
+                            {% else %}
+                            <li class="list-items"><a href="{{ url_for('register') }}">Register</a></li>
+                            {% endif %}
+                            {% if 'log_in' in request.path %}
+                            <li class="list-items active"><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            {% else %}
+                            <li class="list-items"><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            {% endif %}
                         {% else %}
                         <li class="list-items"><a href="#">Add Exercise</a></li>
                         <li class="list-items"><a href="#">My Account</a></li>
