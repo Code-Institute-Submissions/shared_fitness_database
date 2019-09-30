@@ -11,15 +11,44 @@ main {
     background-image: url('../images/dumbells_background.jpg');
     background-size: cover;
 }
+
+
 /* COLORS */
 .nav-wrapper,
 .page-footer{
     background-color: black;
     color: white;
 }
+
+
+/* NAVIGATION */
 .side-nav {
     background-color: #404040;
 }
 .side-nav li>a {
+    color: white;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+}
+.side-nav li>a:focus,
+.side-nav li>a:hover {
+    color: #ffab40;
+}
+
+
+/* MAIN */
+main a {
+    color: #ffab40;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+}
+main a:focus,
+main a:hover {
+    color: white;
+}
+
+
+/* FOOTER */
+.footer_links a {
     color: white;
 }
