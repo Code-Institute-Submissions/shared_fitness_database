@@ -5,18 +5,20 @@
     <div class="row">
         <div class="col s12 intro center-align">
             <h1>Shared Fitness Database</h1>
-            <h2>Find the exercises you need here!</h2>
+            {% if 'username' in session %}
+                <h2>Welcome back {{ session['username'] }}, lets get training!</h2>
+            {% else %}
+                <h2>Find the exercises you need here!</h2>
+            {% endif %}
             <div class="intro hide-on-small-only">
-                <div>
-                    <h3>We currently have <span> {{exercises.count()}} </span> exercises! </h3>
-                    <p>
-                        Here at SFDB we want to make keeping fit...easy!<br>
-                        So we have compiled a database filled with some of our favourite exercises for you to make use of.<br>
-                        Think we've missed a good one? <a href="#">Register</a> now to add it to the list!<br>
-                        So what are you waiting for...?
-                    </p>
-                    <h5 class="intro-subheading">Come take a look!</h5>
-                </div>
+                <h3>We currently have <span> {{exercises.count()}} </span> exercises! </h3>
+                <p>
+                    Here at SFDB we want to make keeping fit...easy!<br>
+                    So we have compiled a database filled with some of our favourite exercises for you to make use of.<br>
+                    Think we've missed a good one? <a href="#">Register</a> or <a href="#">Log In</a> now to add it to the list!<br>
+                    So what are you waiting for...?
+                </p>
+                <h5 class="intro-subheading">Come take a look!</h5>
             </div>
         </div>
     </div>
