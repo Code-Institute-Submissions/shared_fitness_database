@@ -12,7 +12,7 @@
         <!--Materialize CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!--CSS-->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
         <!--<style>
 
             /* GENERAL */
@@ -41,6 +41,20 @@
             .side-nav li>a {
                 color: white;
             }
+            main a {
+                color: #ffab40;
+                -webkit-transition: color .3s ease;
+                transition: color .3s ease;
+            }
+            main a:focus,
+            main a:hover {
+                color: #424242;
+            }
+
+            .footer_links a {
+                color: white;
+            }
+
 
         </style>-->
     </head>
@@ -48,57 +62,69 @@
         <header>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo"><img src="{{ url_for('static', filename='images/logo_sfdb.png') }}" alt="SFDb Logo"></a>
+                    <a href="{{ url_for('index') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/logo_sfdb.png') }}" alt="SFDb Logo"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down list-items">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if 'home' in request.path %}
-                        <li class="list-items active"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                         {% else %}
-                        <li class="list-items"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
                         {% endif %}
                         {% if 'search' in request.path %}
-                        <li class="list-items active"><a href="{{ url_for('search') }}">Search</a></li>
+                        <li class="active"><a href="{{ url_for('search') }}">Search</a></li>
                         {% else %}
-                        <li class="list-items"><a href="{{ url_for('search') }}">Search</a></li>
+                        <li><a href="{{ url_for('search') }}">Search</a></li>
                         {% endif %}
                         {% if 'username' not in session %}
                             {% if 'register' in request.path %}
-                            <li class="list-items active"><a href="{{ url_for('register') }}">Register</a></li>
+                            <li class="active"><a href="{{ url_for('register') }}">Register</a></li>
                             {% else %}
-                            <li class="list-items"><a href="{{ url_for('register') }}">Register</a></li>
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
                             {% endif %}
                             {% if 'log_in' in request.path %}
-                            <li class="list-items active"><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            <li class="active"><a href="{{ url_for('log_in') }}">Log In</a></li>
                             {% else %}
-                            <li class="list-items"><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            <li><a href="{{ url_for('log_in') }}">Log In</a></li>
                             {% endif %}
                         {% else %}
-                        <li class="list-items"><a href="#">Add Exercise</a></li>
+                        <li><a href="#">Add Exercise</a></li>
                             {% if 'user_account' in request.path %}
-                            <li class="list-items active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            <li class="active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% else %}
-                            <li class="list-items"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            <li><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% endif %}
                         {% endif %}
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <img class="responsive-img" src="{{ url_for('static', filename='images/weight-training-for-competition.jpg') }}" alt="Background Pattern">
                         {% if 'home' in request.path %}
-                        <li class="list-items active"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                         {% else %}
-                        <li class="list-items"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
                         {% endif %}
                         {% if 'search' in request.path %}
-                        <li class="list-items active"><a href="{{ url_for('search') }}">Search</a></li>
+                        <li class="active"><a href="{{ url_for('search') }}">Search</a></li>
                         {% else %}
-                        <li class="list-items"><a href="{{ url_for('search') }}">Search</a></li>
+                        <li><a href="{{ url_for('search') }}">Search</a></li>
                         {% endif %}
                         {% if 'username' not in session %}
-                        <li class="list-items"><a href="#">Register</a></li>
-                        <li class="list-items"><a href="#">Log In</a></li>
+                            {% if 'register' in request.path %}
+                            <li class="active"><a href="{{ url_for('register') }}">Register</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            {% endif %}
+                            {% if 'log_in' in request.path %}
+                            <li class="active"><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('log_in') }}">Log In</a></li>
+                            {% endif %}
                         {% else %}
-                        <li class="list-items"><a href="#">Add Exercise</a></li>
-                        <li class="list-items"><a href="#">My Account</a></li>
+                        <li><a href="#">Add Exercise</a></li>
+                            {% if 'user_account' in request.path %}
+                            <li class="active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>
@@ -113,15 +139,17 @@
             <div class="container">
                 <div class="row center-align">
                     <div class="col s12 m4">
-                        <div><a href="https://github.com/Mcrowley93">Martin Crowley - &copy;2019</a></div>
+                        <div class="footer_links"><a href="https://github.com/Mcrowley93">Martin Crowley - &copy;2019</a></div>
                     </div>
                     <div class="col s12 m4">
                         <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo_sfdb.png') }}" alt="Footer Logo" class="footer-logo"></a>
                     </div>
                     <div class="col s12 m4">
-                        <a href="https://github.com/Mcrowley93" target="_blank"><i class="fab fa-github social-icon-footer"></i></a>
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square social-icon-footer"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social-icon-footer"></i></a>
+                        <div class="footer_links">
+                            <a href="https://github.com/Mcrowley93" target="_blank"><i class="fab fa-github social-icon-footer"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square social-icon-footer"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social-icon-footer"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
