@@ -74,13 +74,25 @@
                             {% endif %}
                         {% else %}
                         <li class="list-items"><a href="#">Add Exercise</a></li>
-                        <li class="list-items"><a href="#">My Account</a></li>
+                            {% if 'user_account' in request.path %}
+                            <li class="list-items active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            {% else %}
+                            <li class="list-items"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <img class="responsive-img" src="{{ url_for('static', filename='images/weight-training-for-competition.jpg') }}" alt="Background Pattern">
-                        <li class="list-items"><a href="#">Home</a></li>
-                        <li class="list-items"><a href="#">Search</a></li>
+                        {% if 'home' in request.path %}
+                        <li class="list-items active"><a href="{{ url_for('index') }}">Home</a></li>
+                        {% else %}
+                        <li class="list-items"><a href="{{ url_for('index') }}">Home</a></li>
+                        {% endif %}
+                        {% if 'search' in request.path %}
+                        <li class="list-items active"><a href="{{ url_for('search') }}">Search</a></li>
+                        {% else %}
+                        <li class="list-items"><a href="{{ url_for('search') }}">Search</a></li>
+                        {% endif %}
                         {% if 'username' not in session %}
                         <li class="list-items"><a href="#">Register</a></li>
                         <li class="list-items"><a href="#">Log In</a></li>
