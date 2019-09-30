@@ -1,10 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<!--Intro-->
-<div class="row">
-    <div class="col s12 intro">
-        <h1>This is the Register Page</h1>
-    </div>
-</div>
 
+<section>
+    <div class="page-container">
+        <div class="row">
+            <h3 class="center">Create an account.</h3>
+            <h4 class="center">With so many exercises just waiting to be discovered, what are you waiting for?</h4>
+            <p class="center">Please note:<br>Usernames/Passwords are case-sensitive.</p>
+        </div>
+        <div class="row">
+            <div class="col offset-s1 s10 offset-m2 m8 offset-l3 l6 center">
+                <form method="POST" action="{{ url_for('register') }}" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="username">USERNAME (should be between 4-20 characters)</label>
+                            <input id="username" name="username" type="text" class="validate" required pattern=".{4,20}" data-length="20">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="password">PASSWORD (should be between 5-25 characters)</label>
+                            <input id="password" name="password" type="password" class="validate" required pattern=".{5,25}" data-length="25">
+                        </div>
+                    </div>
+                    <button class="btn btn_form" type="submit">CREATE ACCOUNT</button>
+                </form>
+            </div>
+        </div>
+        <p class="center">Already have an account? Log in <a href="{{ url_for('log_in') }}">here</a></p>
+    </div>
+</section>
 {% endblock %}
