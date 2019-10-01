@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<!--Intro-->
+<section class="page-container">
+    <div class="row center">
+        <div class="col s12 intro">
+            <div class="row">
+                <h1>Welcome {{ session['username'] }}...</h1>
+                <h2>This is your account page!</h2>
+            </div>
+            <div class="row">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
+                </p>
+            </div>
+            <div class="row">
+                <h4>Exercises added by You...</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
+                </p>
+            </div>
+            <div class="row">
+                <h4>Your Favourite Exercises...</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
+                </p>
+            </div>
+            <div class="row">
+                <button class="btn btn_form"><a href="{{ url_for('log_out') }}">Log Out</a></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
