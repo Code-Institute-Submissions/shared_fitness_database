@@ -87,7 +87,11 @@
                             <li><a href="{{ url_for('log_in') }}">Log In</a></li>
                             {% endif %}
                         {% else %}
-                        <li><a href="#">Add Exercise</a></li>
+                            {% if 'add_exercise' in request.path %}
+                            <li class="active"><a href="{{ url_for('add_exercise') }}">Add Exercise</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('add_exercise') }}">Add Exercise</a></li>
+                            {% endif %}
                             {% if 'user_account' in request.path %}
                             <li class="active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% else %}
@@ -119,7 +123,11 @@
                             <li><a href="{{ url_for('log_in') }}">Log In</a></li>
                             {% endif %}
                         {% else %}
-                        <li><a href="#">Add Exercise</a></li>
+                            {% if 'add_exercise' in request.path %}
+                            <li class="active"><a href="{{ url_for('add_exercise') }}">Add Exercise</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('add_exercise') }}">Add Exercise</a></li>
+                            {% endif %}
                             {% if 'user_account' in request.path %}
                             <li class="active"><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% else %}
