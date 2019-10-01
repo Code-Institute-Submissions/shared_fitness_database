@@ -11,24 +11,29 @@ main {
     background-image: url('../images/dumbells_background.jpg');
     background-size: cover;
 }
-
-
-/* COLORS */
-.nav-wrapper,
-.page-footer{
-    background-color: black;
-    color: white;
+.page-container{
+    background-color: rgba(66, 66, 66, 0.5);;
+    box-sizing: border-box;
 }
 
-
 /* NAVIGATION */
+.nav-wrapper {
+    background-color: black;
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+}
+.nav-wrapper li>a:focus,
+.nav-wrapper li>a:hover {
+    color: #ffab40;
+}
 .side-nav {
     background-color: #404040;
 }
 .side-nav li>a {
     color: white;
-    -webkit-transition: color .3s ease;
-    transition: color .3s ease;
+    transition: color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out;
 }
 .side-nav li>a:focus,
 .side-nav li>a:hover {
@@ -44,11 +49,47 @@ main a {
 }
 main a:focus,
 main a:hover {
-    color: white;
+    color: #424242;
 }
 
 
 /* FOOTER */
+.page-footer {
+    background-color: black;
+    color: white;
+}
 .footer_links a {
     color: white;
 }
+
+/* BUTTONS */
+.btn.btn_form {
+    background-color: #ffab40;
+    color: black;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+}
+.btn.btn_form:focus,
+.btn.btn_form:hover{
+    color: #ffab40;
+    background-color: black;
+}
+
+/* INDEX */
+.card-image{
+
+}
+
+/* SEARCH */
+/* REGISTER */
+
+
+/* LOG IN */
+/* ADD EXERCISE */
+.hidden {
+    display: none;
+}
+/* USER ACCOUNT */
+/* EXERCISE */
+.exercise_creator
+.exercise-image
