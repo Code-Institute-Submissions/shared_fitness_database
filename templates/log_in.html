@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<section>
-    <div class="page-container">
+
+<section class="page-container">
+    <div class="row">
         <h3 class="center">Log in to your account.</h3>
         <p class="center">Please note:<br>Usernames/Passwords are case-sensitive.</p>
-        <div class="row">
-            <div class="col offset-s1 s10 offset-m2 m8 offset-l3 l6 center">
-                <form method="POST" action="{{ url_for('log_in') }}" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="username">USERNAME</label>
-                            <input placeholder="Enter username here..." id="username" name="username" type="text" required>
-                        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 s10 offset-m2 m8 offset-l3 l6 center">
+            <form method="POST" action="{{ url_for('log_in') }}" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="username">USERNAME</label>
+                        <input placeholder="Enter username here..." id="username" name="username" type="text" required>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="password">PASSWORD</label>
-                            <input placeholder="Enter password here..." id="password" name="password" type="password" required>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="password">PASSWORD</label>
+                        <input placeholder="Enter password here..." id="password" name="password" type="password" required>
                     </div>
-                    <button class="btn btn_form" type="submit">Log In</button>
-                </form>
-            </div>
+                </div>
+                <button class="btn btn_form" type="submit">Log In</button>
+            </form>
         </div>
+    </div>
+    <div class="row">
         <p class="center">Haven't got an account? Register <span class="info-label"><a href="{{ url_for('register') }}">here</a></span></p>
     </div>
 </section>
