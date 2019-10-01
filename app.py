@@ -88,7 +88,7 @@ def log_out():
     return redirect(url_for('index'))
 
 
-""" USER ACCOUNT """
+""" USER ACCOUNT PAGE"""
 @app.route('/user_account/<account_name>', methods=['POST', 'GET'])
 def user_account(account_name):
     # We need ensure the account being accessed using the current url matches the account stored in session.
@@ -104,6 +104,9 @@ def user_account(account_name):
     return render_template('user_account.html', exercises=exercises, user=user)
 
 
+""" ADD EXERCISE PAGE """
+# This function will render the add_exercise.html page,
+# and allow the form select boxes to access the relevant collection in the database
 @app.route('/add_exercise', methods=['POST', 'GET'])
 def add_exercise():
     # Select box options from database
@@ -120,11 +123,22 @@ def add_exercise():
                            difficulty=difficulty)
 
 
+""" INSERT EXERCISE """
+# This function allows the information in the form to be submitted to the database therefore creating a new entry
+# in the exercises collection and redirecting the user back to the index page after the form has been posted
 @app.route('/insert_exercise', methods=['POST'])
 def insert_exercise():
     exercises = mongo.db.exercises
     exercises.insert_one(request.form.to_dict())
     return redirect(url_for('index'))
+
+
+""" EXERCISE PAGE """
+@app.route('/exercise/<exercise_id>', methods=['POST', 'GET'])
+def exercise(exercise_id):
+    this_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
+    return render_template('exercise.html',
+                           exercise=this_exercise)
 
 
 app.run(host=os.environ.get('IP', '127.0.0.1'),
