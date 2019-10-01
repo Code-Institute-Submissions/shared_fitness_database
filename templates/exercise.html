@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-container">
+    <!--Exercise Title & Info-->
+    <div class="row center">
+        <h1>{{exercise.exercise_name}}</h1>
+
+        {% if session['username'] == exercise.user_name %}
+        <div>
+            <a href="#" class="btn btn_form">EDIT EXERCISE</a>
+            <a href="#" class="btn btn_form">DELETE EXERCISE</a>
+        </div>
+        {% endif %}
+
+        <div class="exercise-creator">
+            <h6>Exercise was submitted by: {{exercise.user_name}}</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 s10 offset-m2 m8 center">
+            <div class="row center">
+                <div class="exercise-image">
+                    <img src="{{exercise.image_url}}" class="img-responsive">
+                </div>
+            </div>
+            <div class="row center col s12">
+                <div class="exercise-info">
+                    <h5>Exercise Information</h5>
+                    <p>Muscle being used: {{exercise.muscle_name}}</p>
+                    <p>Other muscles used: {{exercise.other_muscles}}</p>
+                    <p>Exercise Type: {{exercise.exercise_type}}</p>
+                    <p>Movement Type: {{exercise.movement_type}}</p>
+                    <p>Equipment needed for exercise: {{exercise.equipment_type}}</p>
+                    <p>Difficulty of exercise:</bold> {{exercise.difficulty_level}}</p>
+                </div>
+            </div>
+            <div class="row center col s12">
+                <div class="exercise-info">
+                    <h5>Instructions</h5>
+                    <p style="white-space: pre-wrap;">{{exercise.instructions}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
