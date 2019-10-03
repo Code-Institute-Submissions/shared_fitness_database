@@ -53,8 +53,7 @@ def register():
                                       "password": request.form['password']})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
-        flash(
-            "Sorry, username '{}' has been taken. Please choose another".format(request.form['username']))
+        flash("The username '{}' has been taken. Please choose another.".format(request.form['username']))
         return redirect(url_for('register'))
     return render_template('register.html')
 
@@ -82,7 +81,7 @@ def log_in():
                 return redirect(url_for('index'))
             flash("Incorrect username and/or password. Please try again.")
             return render_template('log_in.html')
-        flash("The username '{}' does not exist, please check username was spelt correctly.".format(request.form['username']))
+        flash("The username '{}' doesn't exist.\n Please check username was spelt correctly.".format(request.form['username']))
     return render_template('log_in.html')
 
 
@@ -91,7 +90,7 @@ def log_in():
 def log_out():
     # Log out the user by clearing the session data
     session.pop('username', None)
-    flash("Logged Out Successfully")
+    flash("You were logged out successfully.")
     return redirect(url_for('index'))
 
 
@@ -100,8 +99,8 @@ def log_out():
 def user_account(account_name):
     # We need ensure the account being accessed using the current url matches the account stored in session.
     if account_name != session.get('username'):
-        flash("Sorry, you may only access your own account page. Please sign in again...")
         session.pop('username', None)
+        flash("You were logged out as you may only access your own account page.\n Please sign in again...")
         return redirect(url_for('log_in.html'))
     else:
         user = mongo.db.users.find_one({"user_name": account_name})
@@ -137,6 +136,7 @@ def add_exercise():
 def insert_exercise():
     exercises = mongo.db.exercises
     exercises.insert_one(request.form.to_dict())
+    flash("Exercise was successfully added to the database.\n Thank you {}!".format(session['username']))
     return redirect(url_for('index'))
 
 
@@ -146,8 +146,7 @@ def insert_exercise():
 @app.route('/exercise/<exercise_id>', methods=['POST', 'GET'])
 def exercise(exercise_id):
     this_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
-    return render_template('exercise.html',
-                           exercise=this_exercise)
+    return render_template('exercise.html', exercise=this_exercise)
 
 
 """ EDIT EXERCISE PAGE """
@@ -174,13 +173,13 @@ def edit_exercise(exercise_id):
 
 """ UPDATE EXERCISE """
 # This function allows the information in the form to be submitted to the database therefore editing the exercise
-# being accessed from exercises collection and redirecting the user back to the index page after the form has been posted
+# and then redirects the user back to the index page after the form has been posted
 @app.route("/update_exercise/<exercise_id>", methods=['POST'])
 def update_exercise(exercise_id):
     updated_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
     updated_fields = request.form.to_dict()
     mongo.db.exercises.update_one(updated_exercise, {"$set": updated_fields})
-
+    flash("Exercise was successfully edited.\n Thank you {}!".format(session['username']))
     return redirect(url_for('index'))
 
 
@@ -189,7 +188,6 @@ def update_exercise(exercise_id):
 @app.route("/delete_exercise/<exercise_id>", methods=['POST', 'GET'])
 def delete_exercise(exercise_id):
     deleted_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
-
     return render_template('delete_exercise.html', exercise=deleted_exercise)
 
 
@@ -199,6 +197,7 @@ def delete_exercise(exercise_id):
 @app.route("/remove_exercise/<exercise_id>", methods=['POST', 'GET'])
 def remove_exercise(exercise_id):
     mongo.db.exercises.remove({"_id": ObjectId(exercise_id)})
+    flash("Exercise was successfully deleted.")
     return redirect(url_for('index'))
 
 
