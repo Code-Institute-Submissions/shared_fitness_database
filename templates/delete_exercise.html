@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-container">
+    <div class="row center">
+        <div class="col s12 intro">
+            <div class="row">
+                <h2>{{ session['username'] }}, are you sure you wish to delete this exercise...</h2>
+                <h3>{{exercise.exercise_name}}</h3>
+                <h5>Note: this change cannot be undone if carried out...</h5>
+            </div>
+            <div class="row">
+                <button class="btn btn_delete"><a href="{{ url_for('remove_exercise', exercise_id=exercise._id) }}">Delete</a></button>
+                <button class="btn btn_form"><a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Cancel</a></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
