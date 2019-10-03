@@ -140,6 +140,18 @@
         </header>
         <main class="main_content">
             <div class="container">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div id="flashed-message">
+                                <div class="col s12">
+                                    <h6>Please Note:</h6><span class="right close-btn"><a><i class="far fa-times-circle"></i></a></span>
+                                    <h5>{{ message }}</h5>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 {% block content %}{% endblock %}
             </div>
         </main>
