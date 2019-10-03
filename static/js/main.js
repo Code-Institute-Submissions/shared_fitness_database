@@ -10,7 +10,21 @@ $('.close-btn').click(function() {
 });
 
 // Fix created by CI to sort out the issue with the select elements not working as required
-document.getElementsByClassName("matfix").addEventListener("click", function(e) {
+document.getElementById("matfix").addEventListener("click", function(e) {
     e.stopPropagation();
 });
-
+document.getElementById("matfix2").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+document.getElementById("matfix3").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+document.getElementById("matfix4").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+document.getElementById("matfix5").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+document.getElementById("matfix6").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
