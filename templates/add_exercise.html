@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col offset-s1 s10 offset-l2 l8 center">
             <form method="POST" action="{{ url_for('insert_exercise') }}" class="col s12">
-                <div class="row">
-                    <div class="input-field col s12 hidden">
+                <div class="row hidden">
+                    <div class="input-field col s12">
                         <input id="user_name" name="user_name" class="validate" type="text" value="{{ session['username'] }}" required>
                         <label for="user_name">Added by:</label>
                     </div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix1" class="input-field col s12">
                         <select id="muscle_name" name="muscle_name" class="validate" required>
                             <option value="" disabled selected>Choose Muscle Used</option>
                             {% for item in muscles %}
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix2" class="input-field col s12">
                         <select id="exercise_type" name="exercise_type" class="validate" required>
                             <option value="" disabled selected>Choose Exercise Type</option>
                             {% for item in types_of_exercise %}
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix3" class="input-field col s12">
                         <select id="movement_type" name="movement_type" class="validate" required>
                             <option value="" disabled selected>Choose Movement Type</option>
                             {% for item in mechanics %}
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix4" class="input-field col s12">
                         <select id="equipment_type" name="equipment_type" class="validate" required>
                             <option value="" disabled selected>Choose Equipment Needed</option>
                             {% for item in equipment %}
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix5" class="input-field col s12">
                         <select id="difficulty_level" name="difficulty_level" class="validate" required>
                             <option value="" disabled selected>Choose Difficulty</option>
                             {% for item in difficulty %}
