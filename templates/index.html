@@ -44,5 +44,17 @@
             </div>
         {% endfor %}
     </div>
+    <!-- Help with the code below for the pagination bar was recieved from Spencer Barriball, my code institute mentor-->
+    <div class="pagination-container center">
+        <ul class="pagination justify-content-center">
+            {% for page_number in pages %}
+            {% if page_number == page %}
+            <li class="page-item active">{{ page_number }}</li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('index', page=page_number) }}">{{ page_number }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 </section>
 {% endblock %}
