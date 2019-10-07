@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!--Intro-->
+
 <section class="page-container">
     <div class="row center">
         <div class="col s12 intro">
@@ -13,23 +13,60 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
                 </p>
             </div>
-            <div class="row">
-                <h4>Exercises added by You...</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
-                </p>
-            </div>
-            <div class="row">
-                <h4>Your Favourite Exercises...</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
-                </p>
-            </div>
-            <div class="row">
-                <button class="btn btn_form"><a href="{{ url_for('log_out') }}">Log Out</a></button>
-            </div>
         </div>
     </div>
 </section>
+<section>
+    <div class="row">
+        <h4 class="center">Exercises Added By You...</h4>
+        <div class="col s12 center">
+        {% if counter == 0 %}
+            <p>
+                Sorry {{ session['username'] }}, it doesn't seem as though you've added any exercises!<br>
+                Want to add one? Click <a href="{{ url_for('add_exercise') }}">here</a>!
+            </p>
+        {% elif counter == 1 %}
+            <p>
+                Thanks {{ session['username'] }}, you have added {{ counter }} exercise!
+            </p>
+        {% else %}
+            <p>
+                Thanks {{ session['username'] }}, you have added {{ counter }} exercises!
+            </p>
+        {% endif %}
+        </div>
+
+        {% for exercise in exercises %}
+            <div class="col s12 m6 l4">
+                <div class="card grey darken-3">
+                    <div class="card-image">
+                        <img src="{{exercise.image_url}}" class="responsive-img">
+                    </div>
+                    <div class="card-content center">
+                        <span class="card-title">{{ exercise.exercise_name}}</span>
+                        <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
+                        <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
+                        <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                    </div>
+                    <div class="card-action center">
+                        <a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Find Out More...</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+<section>
+    <div class="row">
+        <h4 class="center">Your Favourite Exercises...</h4>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
+        </p>
+    </div>
+</section>
+<div class="row center">
+    <button class="btn btn_logout"><a href="{{ url_for('log_out') }}">Log Out</a></button>
+</div>
 
 {% endblock %}
