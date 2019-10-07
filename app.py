@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import math
+import re
 
 app = Flask(__name__)
 
@@ -33,8 +34,23 @@ def index():
 """ SEARCH """
 @app.route('/search', methods=['POST', 'GET'])
 def search():
-    exercises = mongo.db.exercises.find()
-    return render_template('search.html', exercises=exercises)
+
+    if request.method == 'POST':
+        orig_query = request.form['query']
+        # using regular expression setting option for any case
+        query = {'$regex': re.compile('.*{}.*'.format(orig_query)), '$options': 'i'}
+        # find instances of the entered word in title, tags or ingredients
+        results = mongo.db.exercises.find({
+            '$or': [
+                {'exercise_name': query},
+                {'muscle_name': query},
+                {'equipment_type': query},
+                {'difficulty_level': query}
+            ]
+        })
+        return render_template('search.html', query=orig_query, results=results)
+
+    return render_template('search.html')
 
 
 """ REGISTER """
@@ -104,10 +120,10 @@ def user_account(account_name):
         return redirect(url_for('log_in.html'))
     else:
         user = mongo.db.users.find_one({"user_name": account_name})
+        exercises = mongo.db.exercises.find({"user_name": account_name})
+        counter = exercises.count()
 
-        exercises = mongo.db.exercises.find()
-
-    return render_template('user_account.html', exercises=exercises, user=user)
+    return render_template('user_account.html', exercises=exercises, user=user, counter=counter)
 
 
 """ ADD EXERCISE PAGE """
