@@ -5,14 +5,21 @@
     <div class="row">
         <div class="col s12 intro center">
             <h1>Search Page</h1>
+            <p class="center">
+                You can search using the name of the exercise, the muscle you want to train, the equipment you want
+                to use or by the difficulty of the exercise you wish to carry out.<br>
+                Alternatively, leave the search bar clear and click the search button to return all exercises.
+            </p>
         </div>
     </div>
+</section>
+<section class="page-container">
     <div class="row">
-        <div class="col offset-s1 s10 offset-l2 l8 center">
+        <div class="col offset-s1 s10 center">
             <form method="POST" action="{{ url_for('search') }}" class="input-group col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Type the name of an exercise, or leave clear to return all" class="input-group" name="query" type="text">
+                        <input class="input-group" name="query" type="text">
                         <label>Search for:</label>
                     </div>
                 </div>
@@ -24,33 +31,34 @@
         </div>
     </div>
 </section>
-<section>
+<section class="page-container">
     <div class="row">
-    {% if results %}
+        <div class="col offset-s1 s10 center">
+        {% if results %}
             <h5>Search Results</h5>
-            <h6>Found {{results.count()}} exercises matching your criteria!</h6>
-
+            <h6>Found {{results.count()}} exercises matching your search criteria!</h6>
             <div class="row">
                 {% for exercise in results %}
-                    <div class="col s12 m6 l4">
-                        <div class="card grey darken-3">
-                            <div class="card-image">
-                              <img src="{{exercise.image_url}}" class="responsive-img">
-                            </div>
-                            <div class="card-content center">
-                                <span class="card-title">{{ exercise.exercise_name}}</span>
-                                <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
-                                <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
-                                <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
-                            </div>
-                            <div class="card-action center">
-                                <a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Find Out More...</a>
-                            </div>
+                <div class="col s12 m6 l4">
+                    <div class="card grey darken-3">
+                        <div class="card-image">
+                            <img src="{{exercise.image_url}}" class="responsive-img">
+                        </div>
+                        <div class="card-content center">
+                            <span class="card-title">{{ exercise.exercise_name}}</span>
+                            <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
+                            <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
+                            <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                        </div>
+                        <div class="card-action center">
+                            <a href="{{ url_for('exercise', exercise_id=exercise._id) }}" class="text_links">Find Out More...</a>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </div>
         {% endif %}
+        </div>
     </div>
 </section>
 
