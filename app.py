@@ -123,7 +123,15 @@ def user_account(account_name):
         exercises = mongo.db.exercises.find({"user_name": account_name})
         counter = exercises.count()
 
-    return render_template('user_account.html', exercises=exercises, user=user, counter=counter)
+        users_favourite_exercises = mongo.db.exercises.find({"favourites": account_name})
+        second_counter = users_favourite_exercises.count()
+
+    return render_template('user_account.html',
+                           exercises=exercises,
+                           user=user,
+                           counter=counter,
+                           users_favourite_exercises=users_favourite_exercises,
+                           second_counter=second_counter)
 
 
 """ ADD EXERCISE PAGE """
@@ -162,7 +170,20 @@ def insert_exercise():
 @app.route('/exercise/<exercise_id>', methods=['POST', 'GET'])
 def exercise(exercise_id):
     this_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
-    return render_template('exercise.html', exercise=this_exercise)
+
+    # we want to check to see if any exercises are in the users favorites list/array
+    # using the try block allows the testing of a block of code for errors, and the except block allows those errors to
+    # be handled.
+    # Since the try block raises an error, the except block will be executed.
+    #
+    # Had help with the try-block code from Dave Laffan - steview-d (this was to get favourite function working)
+    try:
+        users_favourite_exercises = mongo.db.users.find_one({'user_name': session['username']})['favourites']
+    except KeyError:
+        users_favourite_exercises = []
+    users_favourites = 1 if exercise_id in users_favourite_exercises else 0
+
+    return render_template('exercise.html', exercise=this_exercise, favourites=users_favourites)
 
 
 """ EDIT EXERCISE PAGE """
@@ -215,6 +236,25 @@ def remove_exercise(exercise_id):
     mongo.db.exercises.remove({"_id": ObjectId(exercise_id)})
     flash("Exercise was successfully deleted.")
     return redirect(url_for('index'))
+
+
+@app.route("/toggle_favourite/<exercise_id>/<favourites>")
+def toggle_favourite(exercise_id, favourites):
+    # This function will add or remove an exercise from a users favorites list, it does so by pulling the exercise_id
+    # from the found user's favourites array if it is already in there, however if it isn't found in the user's
+    # favourites array, then the exercise_id is added to it
+    # The function also does the same by adding or removing the user's user_name to the exercise's favourites array,
+    # this makes it easier to track who has liked which exercises, but also allows the information to be relayed to the
+    # user's account page
+    action = '$pull' if favourites == "1" else '$addToSet'
+    mongo.db.users.find_one_and_update({
+        'user_name': session['username']}, {
+        action: {'favourites': exercise_id}})
+    mongo.db.exercises.find_one_and_update({
+        '_id': ObjectId(exercise_id)}, {
+        action: {'favourites': session['username']}})
+
+    return redirect(url_for('exercise', exercise_id=exercise_id))
 
 
 app.run(host=os.environ.get('IP', '127.0.0.1'),
