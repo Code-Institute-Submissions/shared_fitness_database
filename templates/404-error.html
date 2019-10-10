@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-container">
+    <div class="row">
+        <div class="col s12 intro center">
+            <h1>Error - 404</h1>
+            <p>It looks like something went wrong!<br>If you would you like to go back to the Home Page, click <a href="{{ url_for('index') }}" class="text_links">here</a></p>
+            <br>
+            <p>The reason for the error:<br>"{{ exception }}"</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
