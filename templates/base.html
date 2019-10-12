@@ -13,57 +13,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!--CSS-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-        <!--<style>
-
-            /* GENERAL */
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-                font-family: 'Exo 2', sans-serif;
-            }
-            main {
-                flex: 1 0 auto;
-                color: white;
-                background-image: url('../static/images/dumbells_background.jpg');
-                background-size: cover;
-            }
-
-            /* COLORS */
-            .nav-wrapper,
-            .page-footer{
-                background-color: black;
-                color: white;
-            }
-            .side-nav {
-                background-color: #404040;
-            }
-            .side-nav li>a {
-                color: white;
-            }
-            main a {
-                color: #ffab40;
-                -webkit-transition: color .3s ease;
-                transition: color .3s ease;
-            }
-            main a:focus,
-            main a:hover {
-                color: #424242;
-            }
-
-            .footer_links a {
-                color: white;
-            }
-
-
-        </style>-->
     </head>
     <body>
         <header>
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{ url_for('index') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/logo_sfdb.png') }}" alt="SFDb Logo"></a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars hamburger-button"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if 'home' in request.path %}
                         <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
@@ -97,10 +53,11 @@
                             {% else %}
                             <li><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% endif %}
+                            <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
                         {% endif %}
                     </ul>
-                    <ul class="side-nav" id="mobile-demo">
-                        <img class="responsive-img" src="{{ url_for('static', filename='images/weight-training-for-competition.jpg') }}" alt="Background Pattern">
+                    <ul class="side-nav center" id="mobile-demo">
+                        <img class="responsive-img" src="{{ url_for('static', filename='images/gym-black-white.jpg') }}" alt="Background Pattern">
                         {% if 'home' in request.path %}
                         <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                         {% else %}
@@ -133,19 +90,20 @@
                             {% else %}
                             <li><a href="{{ url_for('user_account', account_name = session.username) }}">My Account</a></li>
                             {% endif %}
+                            <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
         </header>
-        <main class="main_content">
+        <main>
             <div class="container">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
                             <div id="flashed-message">
-                                <div class="col s12">
-                                    <h6>Please Note:</h6><span class="right close-btn"><a><i class="far fa-times-circle"></i></a></span>
+                                <div class="col s12 flash_message">
+                                    <h6>Please Note:</h6><span class="right close-btn"><a><i class="far fa-times-circle close_flash"></i></a></span>
                                     <h5>{{ message }}</h5>
                                 </div>
                             </div>
@@ -159,16 +117,18 @@
             <div class="container">
                 <div class="row center-align">
                     <div class="col s12 m4">
-                        <div class="footer_links"><a href="https://github.com/Mcrowley93">Martin Crowley - &copy;2019</a></div>
+                        <div class="footer_links footer_positioning">
+                            <a class="my-github-link" href="https://github.com/Mcrowley93">Martin Crowley - &copy;2019</a>
+                        </div>
                     </div>
                     <div class="col s12 m4">
                         <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo_sfdb.png') }}" alt="Footer Logo" class="footer-logo"></a>
                     </div>
                     <div class="col s12 m4">
-                        <div class="footer_links">
-                            <a href="https://github.com/Mcrowley93" target="_blank"><i class="fab fa-github social-icon-footer"></i></a>
-                            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square social-icon-footer"></i></a>
-                            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social-icon-footer"></i></a>
+                        <div class="footer_links footer_positioning">
+                            <a href="https://github.com/Mcrowley93" target="_blank"><i class="fab fa-github social-media-icon"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square social-media-icon"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social-media-icon"></i></a>
                         </div>
                     </div>
                 </div>
