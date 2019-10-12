@@ -4,8 +4,8 @@
 <section class="page-container">
     <div class="row">
         <div class="col s12 intro center">
-            <h1>Search Page</h1>
-            <p class="center">
+            <h1><span class="highlight">Search Page</span></h1>
+            <p>
                 You can search using the name of the exercise, the muscle you want to train, the equipment you want
                 to use or by the difficulty of the exercise you wish to carry out.<br>
                 Alternatively, leave the search bar clear and click the search button to return all exercises.
@@ -14,8 +14,8 @@
     </div>
 </section>
 <section class="page-container">
-    <div class="row">
-        <div class="col offset-s1 s10 center">
+    <div class="row top-spacer">
+        <div class="col s12 offset-m1 m10 center">
             <form method="POST" action="{{ url_for('search') }}" class="input-group col s12">
                 <div class="row">
                     <div class="input-field col s12">
@@ -23,7 +23,7 @@
                         <label>Search for:</label>
                     </div>
                 </div>
-                <div class="center">
+                <div class="center search_box">
                     <button class="btn btn_form" type="submit">Search</button>
                     <a href="{{ url_for('search') }}" class="btn btn_delete">Reset</a>
                 </div>
@@ -31,13 +31,19 @@
         </div>
     </div>
 </section>
+{% if results %}
 <section class="page-container">
-    <div class="row">
-        <div class="col offset-s1 s10 center">
-        {% if results %}
+    <div class="row top-spacer">
+        <div class="col s12 center">
             <h5>Search Results</h5>
+            {% if results == 0 %}
             <h6>Found {{results.count()}} exercises matching your search criteria!</h6>
-            <div class="row">
+            {elif results == 1 %}
+            <h6>Found {{results.count()}} exercise matching your search criteria!</h6>
+            {% else %}
+            <h6>Found {{results.count()}} exercises matching your search criteria!</h6>
+            {% endif %}
+            <div class="row top-spacer">
                 {% for exercise in results %}
                 <div class="col s12 m6 l4">
                     <div class="card grey darken-3">
@@ -46,9 +52,9 @@
                         </div>
                         <div class="card-content center">
                             <span class="card-title">{{ exercise.exercise_name}}</span>
-                            <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
-                            <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
-                            <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                            <p>Muscle Used: <span class="card-info">{{exercise.muscle_name}}</span></p>
+                            <p>Equipment Needed: <span class="card-info">{{exercise.equipment_type}}</span></p>
+                            <p>Difficulty: <span class="card-info">{{exercise.difficulty_level}}</span></p>
                         </div>
                         <div class="card-action center">
                             <a href="{{ url_for('exercise', exercise_id=exercise._id) }}" class="text_links">Find Out More...</a>
@@ -57,9 +63,9 @@
                 </div>
                 {% endfor %}
             </div>
-        {% endif %}
         </div>
     </div>
 </section>
+{% endif %}
 
 {% endblock %}
