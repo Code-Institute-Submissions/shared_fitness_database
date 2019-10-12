@@ -94,14 +94,16 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input placeholder="" id="image_url" name="image_url" class="validate" type="text" pattern="https://.*" minlength="10" required>
-                        <label for="image_url">Image URL of Exercise (must begin with 'http(s)://'):     *</label>
+                        <label for="image_url">Image URL of Exercise (must begin with 'http(s)://'):*</label>
                     </div>
                 </div>
                 <br>
                 <!--Submit & Cancel Buttons-->
                 <div class="row">
-                    <div class="center">
+                    <div class=" col s12 center">
                         <button class="btn btn_form" type="submit">Submit Exercise</button>
+                    </div>
+                    <div class=" col s12 center">
                         <a href="{{ url_for('index') }}" class="btn btn_delete bottom-spacer">Cancel</a>
                     </div>
                 </div>
