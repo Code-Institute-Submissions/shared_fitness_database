@@ -4,14 +4,14 @@
 <section class="page-container">
     <div class="row">
         <div class="col s12 intro center-align">
-            <h1>Shared Fitness Database</h1>
+            <h1 class="show-required">Shared Fitness Database</h1>
             {% if 'username' in session %}
-                <h2>Welcome back {{ session['username'] }}, lets get training!</h2>
+                <h3>Welcome back {{ session['username'] }}, lets get training!</h3>
             {% else %}
-                <h2>Find the exercises you need here!</h2>
+                <h3>Find the exercises you need here!</h3>
             {% endif %}
             <div class="intro hide-on-small-only">
-                <h3>We currently have <span> {{exercises.count()}} </span> exercises! </h3>
+                <h4>We currently have <span> {{exercises.count()}} </span> exercises! </h4>
                 {% if 'username' in session %}
                 <p>
                     Here at SFDB we want to make keeping fit...easy!<br>
@@ -33,8 +33,9 @@
     </div>
 </section>
 <section class="page-container">
+    <h5 class="center heading-spacer"><span class="highlight">Our Exercises</span></h5>
     <div class="row">
-        <div class="col offset-s1 s10 center">
+        <div class="col s12 center">
             <div class="row">
             {% for exercise in exercises %}
                 <div class="col s12 m6 l4">
@@ -42,14 +43,14 @@
                         <div class="card-image">
                           <img src="{{exercise.image_url}}" class="responsive-img">
                         </div>
-                        <div class="card-content center">
+                        <div class="card-content">
                             <span class="card-title">{{ exercise.exercise_name}}</span>
-                            <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
-                            <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
-                            <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                            <p class="card-field">Muscle Used: <br><span class="card-info">{{exercise.muscle_name}}</span></p>
+                            <p class="card-field">Equipment Needed: <br><span class="card-info">{{exercise.equipment_type}}</span></p>
+                            <p class="card-field">Difficulty: <br><span class="card-info">{{exercise.difficulty_level}}</span></p>
                         </div>
-                        <div class="card-action center">
-                            <a href="{{ url_for('exercise', exercise_id=exercise._id) }}" class="text_links">Find Out More...</a>
+                        <div class="card-action">
+                            <a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Find Out More...</a>
                         </div>
                     </div>
                 </div>
@@ -60,11 +61,11 @@
     <!-- Help with the code below for the pagination bar was recieved from Spencer Barriball, my code institute mentor-->
     <div class="page-container center">
         <ul class="pagination">
-            {% for page_number in pages %}
-            {% if page_number == page %}
+            {% for page_number in home_pagination_pages %}
+            {% if page_number == home_pagination_page %}
             <li class="page-item active">{{ page_number }}</li>
             {% else %}
-            <li class="page-item"><a class="page-link" href="{{ url_for('index', page=page_number) }}">{{ page_number }}</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url_for('index', home_pagination_page=page_number) }}">{{ page_number }}</a></li>
             {% endif %}
             {% endfor %}
         </ul>
