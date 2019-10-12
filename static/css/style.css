@@ -233,19 +233,14 @@ main a.text_links:hover {
     width: 1.5rem;
 }
 
+
 /* SEARCH */
 .search_box{
     padding-bottom: 0.75rem;
 }
 
 
-/* REGISTER */
-
-
-/* LOG IN */
-
 /* ADD EXERCISE, EDIT EXERCISE, DELETE EXERCISE */
-
 .hidden {
     display: none;
 }
@@ -307,9 +302,7 @@ h5.highlight{
     color: #ffab40;
 }
 /* EXERCISE */
-.exercise_creator{
 
-}
 .favourite-icon {
     color: #ffab40;
     -webkit-transition: color .3s ease-in-out;
@@ -322,18 +315,4 @@ h5.highlight{
     background-color: transparent;
 }
 
-.pagination li a {
-    color: white;
-    -webkit-transition: color .3s ease-in-out;
-    transition: color .3s ease-in-out;
-    width: 1rem;
-}
-.pagination li a:focus,
-.pagination li a:hover {
-    color: #ffab40;
-}
-.pagination li a.active {
-    color: #ffab40;
-    width: 1.5rem;
-}
 
