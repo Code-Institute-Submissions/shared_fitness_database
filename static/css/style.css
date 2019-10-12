@@ -10,25 +10,72 @@ main {
     color: white;
     background-image: url('../images/dumbells_background.jpg');
     background-size: cover;
+    font-size: 1rem;
+}
+@media only screen and (max-width: 601px){
+    h1 {
+        font-size: 3.8rem;
+    }
+    h2 {
+        font-size: 3.3rem;
+    }
+    h3 {
+        font-size: 2.8rem;
+    }
+    h4 {
+        font-size: 2.2rem;
+    }
+    h5 {
+        font-size: 1.5rem;
+    }
+}
+.container{
+    width: 75%;
 }
 .page-container{
-    background-color: rgba(66, 66, 66, 0.5);;
+    background-color: rgba(66, 66, 66, 0.7);
     box-sizing: border-box;
+}
+.heading-spacer {
+    padding-top: 1rem;
+}
+.row .col{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.bottom-spacer{
+    padding-bottom: 0.75rem;
+}
+.top-spacer{
+    padding-top: 0.75rem;
 }
 
 /* NAVIGATION */
 .nav-wrapper {
     background-color: black;
+}
+nav ul{
+    padding-right: 0.5rem;
+}
+nav ul li.active a{
+    color: #ffab40;
+}
+nav li>a {
     color: white;
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
+    height: 100%;
 }
-.nav-wrapper li>a:focus,
-.nav-wrapper li>a:hover {
+nav li>a:focus,
+nav li>a:hover {
     color: #ffab40;
+    height: 100%;
 }
+
 .side-nav {
     background-color: #404040;
+    padding-right: 0;
+    width: 15rem;
 }
 .side-nav li>a {
     color: white;
@@ -39,57 +86,254 @@ main {
 .side-nav li>a:hover {
     color: #ffab40;
 }
-
+.side-nav li.active a{
+    color: #ffab40;
+    background-color: #3e3e3e;
+}
+nav .brand-logo img{
+    padding-top: 0.5rem;
+}
+.hamburger-button{
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+}
+.hamburger-button:focus,
+.hamburger-button:hover {
+    color: #ffab40;
+}
 
 /* MAIN */
-main a {
+main a.text_links {
     color: #ffab40;
-    -webkit-transition: color .3s ease;
-    transition: color .3s ease;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
 }
-main a:focus,
-main a:hover {
-    color: #424242;
+main a.text_links:focus,
+main a.text_links:hover {
+    color: black;
+    background-color: #ffab40;
 }
-
+.small_text{
+    font-size: 0.7rem;
+}
+.show-required{
+    color: #ffab40;
+}
+.flash_message{
+    color: #ffab40;
+}
+.close_flash{
+    color: #ffab40;
+}
 
 /* FOOTER */
 .page-footer {
     background-color: black;
     color: white;
 }
+.footer_positioning{
+    padding-top: 0.75rem;
+}
 .footer_links a {
     color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    padding-top: 0.5rem;
+}
+.footer_links a:focus,
+.footer_links a:hover {
+    color: #ffab40;
+}
+.my-github-link {
+    font-size: 1rem;
+}
+.social-media-icon{
+    font-size: 1.5rem;
 }
 
+
 /* BUTTONS */
+.btn.btn_logout,
 .btn.btn_form {
     background-color: #ffab40;
     color: black;
-    -webkit-transition: color .3s ease;
-    transition: color .3s ease;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    margin-bottom: 0.5rem;
 }
+
+.btn.btn_logout:focus,
+.btn.btn_logout:hover,
 .btn.btn_form:focus,
 .btn.btn_form:hover{
+    background-color: #a96532;
+}
+
+.btn.btn_delete{
+    background-color: #ec0000;
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    margin-bottom: 0.5rem;
+}
+.btn.btn_delete:focus,
+.btn.btn_delete:hover{
+    background-color: #a10000;
+}
+.btn.btn_cancel{
+    background-color: #919191;
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    margin-bottom: 1rem;
+}
+.btn.btn_cancel:focus,
+.btn.btn_cancel:hover{
+    background-color: #373737;
+}
+
+/* CARDS */
+.card .card-content{
+    height: 225px;
+    padding-top: 10px;
+}
+.card .card-image img{
+    height: 15rem;
+}
+.card .card-action{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.card .card-action a:not(.btn):not(.btn-floating):not(.btn-large):not(.btn-large):hover {
+    color: black;
+    background-color: #ffab40;
+}
+.card .card-content p{
     color: #ffab40;
-    background-color: black;
+}
+.card .card-content p .card-info{
+    color: white;
 }
 
 /* INDEX */
-.card-image{
-
+.pagination li a {
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    width: 1rem;
+}
+.pagination li a:focus,
+.pagination li a:hover {
+    color: #ffab40;
+}
+.pagination li.active {
+    color: black;
+    background-color: #ffab40;
+    width: 1.5rem;
 }
 
 /* SEARCH */
+.search_box{
+    padding-bottom: 0.75rem;
+}
+
+
 /* REGISTER */
 
 
 /* LOG IN */
-/* ADD EXERCISE */
+
+/* ADD EXERCISE, EDIT EXERCISE, DELETE EXERCISE */
+
 .hidden {
     display: none;
 }
+.select-wrapper span.caret {
+    color: white;
+}
+/* Had to target materialize's custom class for the label on the form boxes to be able to change the color to white */
+input:not([type]):not([readonly]):focus + label, input[type=text]:not([readonly]):not(.browser-default):focus + label, input[type=password]:not([readonly]):not(.browser-default):focus + label, input[type=email]:not([readonly]):not(.browser-default):focus + label, input[type=url]:not([readonly]):not(.browser-default):focus + label, input[type=time]:not([readonly]):not(.browser-default):focus + label, input[type=date]:not([readonly]):not(.browser-default):focus + label, input[type=datetime]:not([readonly]):not(.browser-default):focus + label, input[type=datetime-local]:not([readonly]):not(.browser-default):focus + label, input[type=tel]:not([readonly]):not(.browser-default):focus + label, input[type=number]:not([readonly]):not(.browser-default):focus + label, input[type=search]:not([readonly]):not(.browser-default):focus + label, textarea:not([readonly]).materialize-textarea:focus + label,
+.input-field.col label{
+    color: #ffab40;
+    left: 1.5rem;
+}
+@media only screen and (max-width: 601px) {
+    input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea,
+    .dropdown-content {
+        padding-top: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .select-dropdown li,
+    .dropdown-content li {
+        font-size: 0.8rem;
+    }
+}
+@media only screen and (max-width: 992px){
+    input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea,
+    .dropdown-content {
+        padding-top: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .select-dropdown li,
+    .dropdown-content li {
+        font-size: 0.8rem;
+    }
+}
+@media only screen and (min-width: 993px){
+    input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea,
+    .dropdown-content {
+        padding-top: 1rem;
+        font-size: 1rem;
+    }
+
+    .select-dropdown li,
+    .dropdown-content li {
+        font-size: 1rem;
+    }
+}
+
+.dropdown-content li > a,
+.dropdown-content li > span {
+    color: black;
+}
+
+
 /* USER ACCOUNT */
+span.highlight,
+h5.highlight{
+    color: #ffab40;
+}
 /* EXERCISE */
-.exercise_creator
-.exercise-image
+.exercise_creator{
+
+}
+.favourite-icon {
+    color: #ffab40;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    background-color: transparent;
+}
+.favourite-icon:focus,
+.favourite-icon:hover {
+    color: #b7792d;
+    background-color: transparent;
+}
+
+.pagination li a {
+    color: white;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    width: 1rem;
+}
+.pagination li a:focus,
+.pagination li a:hover {
+    color: #ffab40;
+}
+.pagination li a.active {
+    color: #ffab40;
+    width: 1.5rem;
+}
+
