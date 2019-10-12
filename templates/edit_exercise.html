@@ -2,7 +2,11 @@
 
 <section class="page-container">
     <div class="row center">
-        <h2>Editing: {{exercise.exercise_name}}</h2>
+        <div class="col s12">
+            <h1 class="heading-spacer"><span class="highlight">Editing:</span></h1>
+            <h2> "{{exercise.exercise_name}}"</h2>
+            <p class="small_text">Please note:<br>All fields marked with <span class="show-required">*</span> are required to be filled</p>
+        </div>
     </div>
     <div class="row">
         <div class="col offset-s1 s10 offset-l2 l8 center">
@@ -16,11 +20,11 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="exercise_name" name="exercise_name" class="validate" type="text" value="{{exercise.exercise_name}}" required>
-                        <label for="exercise_name">Exercise Name:</label>
+                        <label for="exercise_name">Exercise Name:*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix1" class="input-field col s12">
                         <select id="muscle_name" name="muscle_name" class="validate" required>
                             <option value="" disabled selected>Choose Muscle Used</option>
                             {% for item in muscles %}
@@ -31,7 +35,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="muscle_name">Muscle being used (primary):</label>
+                        <label for="muscle_name">Muscle being used (primary):*</label>
                     </div>
                 </div>
                 <div class="row">
@@ -41,7 +45,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix2" class="input-field col s12">
                         <select id="exercise_type" name="exercise_type" class="validate" required>
                             <option value="" disabled selected>Choose Exercise Type</option>
                             {% for item in types_of_exercise %}
@@ -52,11 +56,11 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="exercise_type">Type of Exercise:</label>
+                        <label for="exercise_type">Type of Exercise:*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix3" class="input-field col s12">
                         <select id="movement_type" name="movement_type" class="validate" required>
                             <option value="" disabled selected>Choose Movement Type</option>
                             {% for item in mechanics %}
@@ -67,11 +71,11 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="movement_type">Movement Type:</label>
+                        <label for="movement_type">Movement Type:*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix4" class="input-field col s12 matfix">
                         <select id="equipment_type" name="equipment_type" class="validate" required>
                             <option value="" disabled selected>Choose Equipment Needed</option>
                             {% for item in equipment %}
@@ -82,11 +86,11 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="equipment_type">Equipment Required for Exercise:</label>
+                        <label for="equipment_type">Equipment Required:*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 matfix">
+                    <div id="matfix5" class="input-field col s12">
                         <select id="difficulty_level" name="difficulty_level" class="validate" required>
                             <option value="" disabled selected>Choose Difficulty</option>
                             {% for item in difficulty %}
@@ -97,25 +101,27 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <label for="difficulty_level">Difficulty of Exercise:</label>
+                        <label for="difficulty_level">Difficulty of Exercise:*</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="instructions" id="instructions" class="materialize-textarea validate" data-length="2000" required>{{exercise.instructions}}</textarea>
-                        <label for="instructions">Instructions (please separate instructions with a new line):</label>
+                        <textarea placeholder="Separate instructions with a new line..." name="instructions" id="instructions" class="materialize-textarea validate" data-length="2000" required>{{exercise.instructions}}</textarea>
+                        <label for="instructions">Instructions:*</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="image_url" name="image_url" class="validate" type="text" pattern="https://.*" minlength="15" value="{{exercise.image_url}}" required>
-                        <label for="image_url">Image URL of Exercise (must be a minimum of 15 characters and begin with 'http(s)://'):</label>
+                        <input placeholder="Must begin with 'http(s)://'" id="image_url" name="image_url" class="validate" type="text" pattern="https://.*" minlength="10" value="{{exercise.image_url}}" required>
+                        <label for="image_url">Image URL of Exercise:*</label>
                     </div>
                 </div>
                 <!--Submit & Cancel Buttons-->
-                <div class="center">
+                <div class="center col s12">
                     <button class="btn btn_form" type="submit">Update Exercise</button>
-                    <a href="{{ url_for('exercise', exercise_id=exercise._id) }}" class="btn">Cancel</a>
+                </div>
+                <div class="center col s12">
+                    <a href="{{ url_for('exercise', exercise_id=exercise._id) }}" class="btn btn_cancel">Cancel</a>
                 </div>
             </form>
         </div>
