@@ -3,14 +3,16 @@
 
 <section class="page-container">
     <div class="row center">
-        <div class="col s12 intro">
+        <div class="col offset-s1 s10 intro">
             <div class="row">
-                <h1>Welcome {{ session['username'] }}...</h1>
-                <h2>This is your account page!</h2>
+                <h1><span class="highlight">Welcome {{ session['username'] }}...</span></h1>
+                <h3>This is your account page!</h3>
             </div>
             <div class="row">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque autem commodi consequatur consequuntur cupiditate debitis earum excepturi hic incidunt ipsam molestiae obcaecati officiis qui quia reprehenderit saepe, vero!
+                    Hi {{ session['username'] }}, here at Shared Fitness Database we realise just how daunting it can be entering the world of fitness. From knowing which exercises train which muscles, to knowing how to perform them, and even just finding exercises you can use at home on days when you don't want to face the world.<br>
+                    Therefore the main aim here at SFDb is to make it so that there will always be an evergrowing selection of exercises for you to peruse and use to your hearts content, and should there be one that isn't included and you feel others could benefit from knowing, why not add it and help everyone benefit a little from your shared knowledge too?!<br>
+                    Ultimately, the end goal is to create that sense of community, so you know that no matter how long you've been training for, or the reason behind it, you'll know there are others sharing that journey with you!
                 </p>
             </div>
         </div>
@@ -18,12 +20,14 @@
 </section>
 <section class="page-container">
     <div class="row">
-        <h4 class="center">Exercises Added By You...</h4>
+        <div class="col s12 center">
+            <h4 class="center heading-spacer"><span class="highlight">Exercises Added By You...</span></h4>
+        </div>
         <div class="col s12 center">
         {% if counter == 0 %}
             <p>
                 Sorry {{ session['username'] }}, it doesn't seem as though you've added any exercises!<br>
-                Want to add one? Click <a href="{{ url_for('add_exercise') }}">here</a>!
+                Want to add one? Click <a class="text_links" href="{{ url_for('add_exercise') }}">here</a>!
             </p>
         {% elif counter == 1 %}
             <p>
@@ -35,8 +39,8 @@
             </p>
         {% endif %}
         </div>
-
-        {% for exercise in exercises %}
+        <div class="col s12 center">
+        {% for exercise in user_added_exercises %}
             <div class="col s12 m6 l4">
                 <div class="card grey darken-3">
                     <div class="card-image">
@@ -44,9 +48,9 @@
                     </div>
                     <div class="card-content center">
                         <span class="card-title">{{ exercise.exercise_name}}</span>
-                        <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
-                        <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
-                        <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                        <p>Muscle Used: <br><span class="card-info">{{exercise.muscle_name}}</span></p>
+                        <p>Equipment Needed: <br><span class="card-info">{{exercise.equipment_type}}</span></p>
+                        <p>Difficulty: <br><span class="card-info">{{exercise.difficulty_level}}</span></p>
                     </div>
                     <div class="card-action center">
                         <a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Find Out More...</a>
@@ -54,17 +58,30 @@
                 </div>
             </div>
         {% endfor %}
-
+        </div>
+    </div>
+    <div class="page-container center">
+        <ul class="pagination">
+            {% for page_number in user_added_pages %}
+            {% if page_number == user_added_page %}
+            <li class="page-item active">{{ page_number }}</li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('user_account', account_name = session.username, user_added_page=page_number) }}">{{ page_number }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 </section>
 <section class="page-container">
     <div class="row">
-        <h4 class="center">Your Favourite Exercises...</h4>
+        <div class="col s12 center">
+            <h4 class="heading-spacer"><span class="highlight">Your Favourite Exercises...</span></h4>
+        </div>
         <div class="col s12 center">
         {% if second_counter == 0 %}
             <p>
                 Sorry {{ session['username'] }}, it doesn't seem as though you've added any exercises to your favourites!<br>
-                Want to find one? Click <a href="{{ url_for('search') }}">here</a> to search our exercises!
+                Want to find one? Click <a class="text_links" href="{{ url_for('search') }}">here</a> to search our exercises!
             </p>
         {% elif second_counter == 1 %}
             <p>
@@ -76,7 +93,7 @@
             </p>
         {% endif %}
         </div>
-
+        <div class="col s12 center">
         {% for exercise in users_favourite_exercises %}
             <div class="col s12 m6 l4">
                 <div class="card grey darken-3">
@@ -85,9 +102,9 @@
                     </div>
                     <div class="card-content center">
                         <span class="card-title">{{ exercise.exercise_name}}</span>
-                        <p>Muscle Used: <span>{{exercise.muscle_name}}</span></p>
-                        <p>Equipment Needed: <span>{{exercise.equipment_type}}</span></p>
-                        <p>Difficulty: <span>{{exercise.difficulty_level}}</span></p>
+                        <p>Muscle Used: <br><span class="card-info">{{exercise.muscle_name}}</span></p>
+                        <p>Equipment Needed: <br><span class="card-info">{{exercise.equipment_type}}</span></p>
+                        <p>Difficulty: <br><span class="card-info">{{exercise.difficulty_level}}</span></p>
                     </div>
                     <div class="card-action center">
                         <a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Find Out More...</a>
@@ -95,11 +112,22 @@
                 </div>
             </div>
         {% endfor %}
-
+        </div>
+    </div>
+    <div class="page-container center">
+        <ul class="pagination">
+            {% for page_number in user_favourite_pages %}
+            {% if page_number == user_favourite_page %}
+            <li class="page-item active">{{ page_number }}</li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('user_account', account_name = session.username, user_favourite_page=page_number) }}">{{ page_number }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 </section>
-<div class="row center">
-    <button class="btn btn_logout"><a href="{{ url_for('log_out') }}">Log Out</a></button>
+<div class="row center top-spacer">
+    <a href="{{ url_for('log_out') }}" class="btn btn_logout">Log Out</a>
 </div>
 
 {% endblock %}
