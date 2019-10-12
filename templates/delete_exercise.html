@@ -2,16 +2,23 @@
 {% block content %}
 
 <section class="page-container">
-    <div class="row center">
-        <div class="col s12 intro">
+    <div class="row">
+        <div class="col s12 center">
             <div class="row">
-                <h2>{{ session['username'] }}, <br>are you sure you wish to delete this exercise...</h2>
-                <h3>"{{exercise.exercise_name}}"</h3>
-                <h5>Note: this change cannot be undone if carried out...</h5>
+                <div class="col s12">
+                    <h2><span class="highlight">{{ session['username'] }}, <br>are you sure you wish to delete this exercise...</span></h2>
+                    <h3>"{{exercise.exercise_name}}"</h3>
+                    <br>
+                    <h5><span class="highlight">Note:</span> this change CANNOT be undone if carried out...</h5>
+                </div>
             </div>
             <div class="row">
-                <button class="btn btn_delete"><a href="{{ url_for('remove_exercise', exercise_id=exercise._id) }}">Delete</a></button>
-                <button class="btn btn_form"><a href="{{ url_for('exercise', exercise_id=exercise._id) }}">Cancel</a></button>
+                <div class="col s12">
+                    <a class="btn btn_delete" href="{{ url_for('remove_exercise', exercise_id=exercise._id) }}">Delete</a>
+                </div>
+                <div class="col s12">
+                    <a class="btn btn_cancel" href="{{ url_for('exercise', exercise_id=exercise._id) }}">Cancel</a>
+                </div>
             </div>
         </div>
     </div>
