@@ -2,67 +2,74 @@
 {% block content %}
 <section class="page-container">
     <!--Exercise Title & Info-->
-    <div class="row center">
-        <h1>{{exercise.exercise_name}}</h1>
-
-        <div class="exercise-creator">
-            <h6>Exercise was submitted by: {{exercise.user_name}}</h6>
+    <div class="row">
+        <div class="col s12 center">
+            <h1><span class="highlight">{{exercise.exercise_name}}</span></h1>
+            <div class="exercise-creator">
+                <h5>Exercise was submitted by: {{exercise.user_name}}</h5>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col offset-s1 s10 offset-m2 m8 center">
-            <div class="row center">
-                <div class="exercise-image">
+            <div class="row">
+                <div class="col s12 center exercise-image">
                     <img src="{{exercise.image_url}}" class="responsive-img">
                 </div>
             </div>
-            <div class="row center col s12">
-                <div class="exercise-info">
+            <div class="row">
+                <div class="col s12 center exercise-info">
                     <h5>Exercise Information</h5>
-                    <p>Muscle being used: {{exercise.muscle_name}}</p>
-                    <p>Other muscles used: {{exercise.other_muscles}}</p>
-                    <p>Exercise Type: {{exercise.exercise_type}}</p>
-                    <p>Movement Type: {{exercise.movement_type}}</p>
-                    <p>Equipment needed for exercise: {{exercise.equipment_type}}</p>
-                    <p><bold>Difficulty of exercise:</bold> {{exercise.difficulty_level}}</p>
+                    <p class="exercise"><span class="highlight">Muscle being used:</span> <br>{{exercise.muscle_name}}</p>
+                    <p><span class="highlight">Other muscles used:</span> <br>{{exercise.other_muscles}}</p>
+                    <p><span class="highlight">Exercise Type:</span> <br>{{exercise.exercise_type}}</p>
+                    <p><span class="highlight">Movement Type:</span> <br>{{exercise.movement_type}}</p>
+                    <p><span class="highlight">Equipment needed for exercise:</span> <br>{{exercise.equipment_type}}</p>
+                    <p><span class="highlight">Difficulty of exercise:</span> <br>{{exercise.difficulty_level}}</p>
                 </div>
-                <hr>
+                <hr class="divider">
             </div>
             <div class="row center col s12">
                 {% if not session['username'] %}
                 <div class="exercise-info row">
-                    <h5>Instructions</h5>
+                    <h5 class="highlight">Instructions</h5>
                     <p style="white-space: pre-wrap;">{{exercise.instructions}}</p>
                 </div>
                 {% else %}
-                <div class="row center col s12">
+                <div class="row center">
                     {% if favourites %}
-                    <div class="row">
+                    <div class="col s12">
                         <a href="{{ url_for('toggle_favourite', exercise_id = exercise._id, favourites=favourites) }}"><i class="fas fa-heart fa-3x favourite-icon"></i></a>
-                        <p class="center">Remove from Favourites</p>
+                        <p class="center small_text">Click to Remove from Favourites</p>
                     </div>
                     {% else %}
-                    <div class="row">
+                    <div class="col s12">
                         <a href="{{ url_for('toggle_favourite', exercise_id = exercise._id, favourites=favourites) }}" ><i class="fas fa-heart-broken fa-3x favourite-icon"></i></a>
-                        <p class="center">Add to Favourites</p>
+                        <p class="center small_text">Click to Add to Favourites</p>
                     </div>
                     {% endif %}
-                    <hr>
-                    <div class="exercise-info row">
-                        <h5>Instructions</h5>
+                </div>
+                <hr class="divider">
+                <div class="exercise-info row">
+                    <div class="col s12">
+                        <h5><span class="highlight">Instructions</span></h5>
                         <p style="white-space: pre-wrap;">{{exercise.instructions}}</p>
                     </div>
-                {% endif %}
                 </div>
+                {% endif %}
             </div>
-            <div class="row center col s12">
-                {% if session['username'] == exercise.user_name %}
-                <hr>
-                <div>
-                    <a href="{{url_for('edit_exercise', exercise_id=exercise._id)}}" class="btn btn_form">EDIT EXERCISE</a>
-                    <a href="{{url_for('delete_exercise', exercise_id=exercise._id)}}" class="btn btn_delete">DELETE EXERCISE</a>
+            <div class="row">
+                <div class="col s12 center">
+                    {% if session['username'] == exercise.user_name %}
+                    <hr class="divider">
+                    <div class="col s12 top-spacer">
+                        <a href="{{url_for('edit_exercise', exercise_id=exercise._id)}}" class="btn btn_form">EDIT</a>
+                    </div>
+                    <div class="col s12 top-spacer">
+                        <a href="{{url_for('delete_exercise', exercise_id=exercise._id)}}" class="btn btn_delete">DELETE</a>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>
