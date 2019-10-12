@@ -3,23 +3,25 @@
 
 <section class="page-container">
     <div class="row">
-        <h3 class="center">Create an account.</h3>
-        <h4 class="center">With so many exercises just waiting to be discovered, what are you waiting for?</h4>
-        <p class="center">Please note:<br>Usernames/Passwords are case-sensitive.</p>
+        <div class="col s12 center heading-spacer">
+            <h3><span class="highlight">Create an account</span></h3>
+            <h5>With so many exercises just waiting to be discovered, <br>what are you waiting for?</h5>
+            <p>Please note:<br>Usernames/Passwords are case-sensitive.</p>
+        </div>
     </div>
     <div class="row">
         <div class="col offset-s1 s10 offset-m2 m8 offset-l3 l6 center">
             <form method="POST" action="{{ url_for('register') }}" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
+                        <input placeholder="Enter username here..." id="username" name="username" type="text" class="validate" required pattern=".{4,20}" data-length="20">
                         <label for="username">USERNAME (should be between 4-20 characters)</label>
-                        <input id="username" name="username" type="text" class="validate" required pattern=".{4,20}" data-length="20">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
+                        <input placeholder="Enter password here..." id="password" name="password" type="password" class="validate" required pattern=".{5,25}" data-length="25">
                         <label for="password">PASSWORD (should be between 5-25 characters)</label>
-                        <input id="password" name="password" type="password" class="validate" required pattern=".{5,25}" data-length="25">
                     </div>
                 </div>
                 <button class="btn btn_form" type="submit">CREATE ACCOUNT</button>
@@ -27,7 +29,9 @@
         </div>
     </div>
     <div class="row">
-        <p class="center">Already have an account? Log in <a href="{{ url_for('log_in') }}">here</a></p>
+        <div class="col s12 center">
+            <p class="center">Already have an account? Log in <a class="text_links" href="{{ url_for('log_in') }}">here</a></p>
+        </div>
     </div>
 </section>
 {% endblock %}
