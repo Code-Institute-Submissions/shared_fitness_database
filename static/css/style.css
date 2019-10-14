@@ -180,7 +180,7 @@ main a.text_links:hover {
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
     margin-bottom: 0.5rem;
-    width: 12rem;
+    width: 14rem;
 }
 .btn.btn_register:focus,
 .btn.btn_register:hover{
