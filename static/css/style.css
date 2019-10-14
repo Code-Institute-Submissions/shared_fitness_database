@@ -49,6 +49,11 @@ main {
 .top-spacer{
     padding-top: 0.75rem;
 }
+span.highlight,
+h5.highlight{
+    color: #ffab40;
+}
+
 
 /* NAVIGATION */
 .nav-wrapper {
@@ -71,7 +76,6 @@ nav li>a:hover {
     color: #ffab40;
     height: 100%;
 }
-
 .side-nav {
     background-color: #404040;
     padding-right: 0;
@@ -102,6 +106,7 @@ nav .brand-logo img{
 .hamburger-button:hover {
     color: #ffab40;
 }
+
 
 /* MAIN */
 main a.text_links {
@@ -161,41 +166,51 @@ main a.text_links:hover {
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
     margin-bottom: 0.5rem;
+    width: 8rem;
 }
-
 .btn.btn_logout:focus,
 .btn.btn_logout:hover,
 .btn.btn_form:focus,
 .btn.btn_form:hover{
     background-color: #a96532;
 }
-
 .btn.btn_delete{
     background-color: #ec0000;
     color: white;
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
     margin-bottom: 0.5rem;
+    width: 8rem;
 }
 .btn.btn_delete:focus,
 .btn.btn_delete:hover{
     background-color: #a10000;
 }
+.btn.btn_reset,
 .btn.btn_cancel{
     background-color: #919191;
     color: white;
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
-    margin-bottom: 1rem;
+    width: 8rem;
 }
+.btn.btn_reset:focus,
+.btn.btn_reset:hover,
 .btn.btn_cancel:focus,
 .btn.btn_cancel:hover{
     background-color: #373737;
 }
+.btn.btn_cancel{
+    margin-bottom: 1rem;
+}
+.btn.btn_reset{
+    margin-bottom: 0.5rem;
+}
+
 
 /* CARDS */
 .card .card-content{
-    height: 225px;
+    height: 18rem;
     padding-top: 10px;
 }
 .card .card-image img{
@@ -216,7 +231,9 @@ main a.text_links:hover {
     color: white;
 }
 
+
 /* INDEX */
+/* USER ACCOUNT */
 .pagination li a {
     color: white;
     -webkit-transition: color .3s ease-in-out;
@@ -247,7 +264,7 @@ main a.text_links:hover {
 .select-wrapper span.caret {
     color: white;
 }
-/* Had to target materialize's custom class for the label on the form boxes to be able to change the color to white */
+/* Had to target materialize inputs for the label on the form boxes to be able to change the color to white */
 input:not([type]):not([readonly]):focus + label, input[type=text]:not([readonly]):not(.browser-default):focus + label, input[type=password]:not([readonly]):not(.browser-default):focus + label, input[type=email]:not([readonly]):not(.browser-default):focus + label, input[type=url]:not([readonly]):not(.browser-default):focus + label, input[type=time]:not([readonly]):not(.browser-default):focus + label, input[type=date]:not([readonly]):not(.browser-default):focus + label, input[type=datetime]:not([readonly]):not(.browser-default):focus + label, input[type=datetime-local]:not([readonly]):not(.browser-default):focus + label, input[type=tel]:not([readonly]):not(.browser-default):focus + label, input[type=number]:not([readonly]):not(.browser-default):focus + label, input[type=search]:not([readonly]):not(.browser-default):focus + label, textarea:not([readonly]).materialize-textarea:focus + label,
 .input-field.col label{
     color: #ffab40;
@@ -296,13 +313,7 @@ input:not([type]):not([readonly]):focus + label, input[type=text]:not([readonly]
 }
 
 
-/* USER ACCOUNT */
-span.highlight,
-h5.highlight{
-    color: #ffab40;
-}
 /* EXERCISE */
-
 .favourite-icon {
     color: #ffab40;
     -webkit-transition: color .3s ease-in-out;
@@ -314,5 +325,4 @@ h5.highlight{
     color: #b7792d;
     background-color: transparent;
 }
-
 
