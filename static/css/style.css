@@ -192,7 +192,7 @@ main a.text_links:hover {
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
     margin-bottom: 0.5rem;
-    width: 8rem;
+    width: 9rem;
 }
 .btn.btn_delete:focus,
 .btn.btn_delete:hover{
@@ -203,7 +203,7 @@ main a.text_links:hover {
     color: white;
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
-    width: 8rem;
+    width: 9rem;
     margin-bottom: 1rem;
 }
 .btn.btn_cancel:focus,
@@ -215,7 +215,7 @@ main a.text_links:hover {
     color: white;
     -webkit-transition: color .3s ease-in-out;
     transition: color .3s ease-in-out;
-    width: 8rem;
+    width: 9rem;
     margin-bottom: 0.5rem;
 }
 .btn.btn_reset:focus,
