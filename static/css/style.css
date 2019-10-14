@@ -175,7 +175,16 @@ main a.text_links:hover {
     background-color: #a96532;
 }
 .btn.btn_register{
+    background-color: #ffab40;
+    color: black;
+    -webkit-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out;
+    margin-bottom: 0.5rem;
     width: 12rem;
+}
+.btn.btn_register:focus,
+.btn.btn_register:hover{
+    background-color: #a96532;
 }
 .btn.btn_delete{
     background-color: #ec0000;
