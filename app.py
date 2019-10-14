@@ -21,6 +21,10 @@ mongo = PyMongo(app)
 # the function which will choose a limit for the number of exercises per page, count the total number
 # of exercises and then will then provide the logic for what exercises will be shown on each page
 @app.route('/')
+def home():
+    return redirect(url_for('index'))
+
+
 @app.route('/home', methods=['POST', 'GET'])
 def index():
     exercises = mongo.db.exercises.find()
