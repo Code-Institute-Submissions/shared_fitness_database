@@ -23,12 +23,17 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home', methods=['POST', 'GET'])
 def index():
-    per_page = 3
-    page = int(request.args.get('page', 1))
+    exercises = mongo.db.exercises.find()
+    per_home_pagination_page = 6
+    home_pagination_page = int(request.args.get('home_pagination_page', 1))
     total = mongo.db.exercises.count_documents({})
-    exercises = mongo.db.exercises.find().skip((page - 1) * per_page).limit(per_page)
-    pages = range(1, int(math.ceil(total / per_page)) + 1)
-    return render_template('index.html', exercises=exercises, page=page, pages=pages, total=total)
+    exercises.skip((home_pagination_page - 1) * per_home_pagination_page).limit(per_home_pagination_page)
+    home_pagination_pages = range(1, int(math.ceil(total / per_home_pagination_page)) + 1)
+    return render_template('index.html',
+                           exercises=exercises,
+                           home_pagination_page=home_pagination_page,
+                           home_pagination_pages=home_pagination_pages,
+                           total=total)
 
 
 """ SEARCH """
@@ -48,6 +53,7 @@ def search():
                 {'difficulty_level': query}
             ]
         })
+
         return render_template('search.html', query=orig_query, results=results)
 
     return render_template('search.html')
@@ -56,6 +62,11 @@ def search():
 """ REGISTER """
 @app.route("/register", methods=['POST', 'GET'])
 def register():
+    # Confirm not already logged in
+    if session.get('username'):
+        flash("Sorry {}, it appears you are already logged in! To register a new user, try logging out first.".format(session['username']))
+        return redirect(url_for('index'))
+
     # User registration - Check to see if the username already exists in the database.
     # If it isn't we then create a new user in the database with the provided username/password provided.
     # If the username is already in the database, we inform the user that the username has already been taken,
@@ -79,7 +90,7 @@ def register():
 def log_in():
     # Initially confirm the user isn't already logged in
     if session.get('username'):
-        flash("You are already logged in. To log in as a different user, try logging out first.")
+        flash("Sorry {},it appears you are already logged in. To log in as a different user, try logging out first.".format(session['username']))
         return redirect(url_for('index'))
 
     # User login - Check to see if the username/password already exists in the database.
@@ -97,7 +108,7 @@ def log_in():
                 return redirect(url_for('index'))
             flash("Incorrect username and/or password. Please try again.")
             return render_template('log_in.html')
-        flash("The username '{}' doesn't exist.\n Please check username was spelt correctly.".format(request.form['username']))
+        flash("The username '{}' doesn't exist. Please check the username was spelt correctly.".format(request.form['username']))
     return render_template('log_in.html')
 
 
@@ -116,22 +127,37 @@ def user_account(account_name):
     # We need ensure the account being accessed using the current url matches the account stored in session.
     if account_name != session.get('username'):
         session.pop('username', None)
-        flash("You were logged out as you may only access your own account page.\n Please sign in again...")
-        return redirect(url_for('log_in.html'))
+        flash("You were logged out as you may only access your own account page. Please sign in again...")
+        return redirect(url_for('log_in'))
     else:
         user = mongo.db.users.find_one({"user_name": account_name})
-        exercises = mongo.db.exercises.find({"user_name": account_name})
-        counter = exercises.count()
+
+        user_added_exercises = mongo.db.exercises.find({"user_name": account_name})
+        counter = user_added_exercises.count()
+        per_user_added_page = 3
+        user_added_page = int(request.args.get('user_added_page', 1))
+        total = counter
+        user_added_exercises.skip((user_added_page - 1) * per_user_added_page).limit(per_user_added_page)
+        user_added_pages = range(1, int(math.ceil(total / per_user_added_page)) + 1)
 
         users_favourite_exercises = mongo.db.exercises.find({"favourites": account_name})
         second_counter = users_favourite_exercises.count()
+        per_user_favourite_page = 3
+        user_favourite_page = int(request.args.get('user_favourite_page', 1))
+        total = second_counter
+        users_favourite_exercises.skip((user_favourite_page - 1) * per_user_favourite_page).limit(per_user_favourite_page)
+        user_favourite_pages = range(1, int(math.ceil(total / per_user_favourite_page)) + 1)
 
     return render_template('user_account.html',
-                           exercises=exercises,
                            user=user,
                            counter=counter,
                            users_favourite_exercises=users_favourite_exercises,
-                           second_counter=second_counter)
+                           second_counter=second_counter,
+                           user_added_pages=user_added_pages,
+                           user_added_exercises=user_added_exercises,
+                           user_added_page=user_added_page,
+                           user_favourite_page=user_favourite_page,
+                           user_favourite_pages=user_favourite_pages)
 
 
 """ ADD EXERCISE PAGE """
@@ -160,7 +186,7 @@ def add_exercise():
 def insert_exercise():
     exercises = mongo.db.exercises
     exercises.insert_one(request.form.to_dict())
-    flash("Exercise was successfully added to the database.\n Thank you {}!".format(session['username']))
+    flash("Exercise was successfully added to the database. Thank you {}!".format(session['username']))
     return redirect(url_for('index'))
 
 
@@ -216,7 +242,7 @@ def update_exercise(exercise_id):
     updated_exercise = mongo.db.exercises.find_one({"_id": ObjectId(exercise_id)})
     updated_fields = request.form.to_dict()
     mongo.db.exercises.update_one(updated_exercise, {"$set": updated_fields})
-    flash("Exercise was successfully edited.\n Thank you {}!".format(session['username']))
+    flash("Exercise was successfully edited. Thank you {}!".format(session['username']))
     return redirect(url_for('index'))
 
 
@@ -255,6 +281,12 @@ def toggle_favourite(exercise_id, favourites):
         action: {'favourites': session['username']}})
 
     return redirect(url_for('exercise', exercise_id=exercise_id))
+
+
+# Error Handlers
+@app.errorhandler(404)
+def page_not_found(exception):
+    return render_template('404-error.html', exception=exception)
 
 
 app.run(host=os.environ.get('IP', '127.0.0.1'),
