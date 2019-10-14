@@ -201,7 +201,7 @@ def exercise(exercise_id):
     # using the try block allows the testing of a block of code for errors, and the except block allows those errors to
     # be handled.
     # Since the try block raises an error, the except block will be executed.
-    #
+
     # Had help with the try-block code from Dave Laffan - steview-d (this was to get favourite function working)
     try:
         users_favourite_exercises = mongo.db.users.find_one({'user_name': session['username']})['favourites']
