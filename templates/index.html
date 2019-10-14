@@ -14,14 +14,14 @@
                 <h4>We currently have <span> {{exercises.count()}} </span> exercises! </h4>
                 {% if 'username' in session %}
                 <p>
-                    Here at SFDB we want to make keeping fit...easy!<br>
+                    Here at SFDb we want to make keeping fit...easy!<br>
                     So we have compiled a database filled with some of our favourite exercises for you to make use of.<br>
                     Think we've missed a good one? <a href="{{ url_for('add_exercise') }}" class="text_links">Click</a> here now to add it to the list!<br>
                     So what are you waiting for...?
                 </p>
                 {% else %}
                 <p>
-                    Here at SFDB we want to make keeping fit...easy!<br>
+                    Here at SFDb we want to make keeping fit...easy!<br>
                     So we have compiled a database filled with some of our favourite exercises for you to make use of.<br>
                     Think we've missed a good one? <a href="{{ url_for('register') }}" class="text_links">Register</a> or <a href="{{ url_for('log_in') }}" class="text_links">Log In</a> now to add it to the list!<br>
                     So what are you waiting for...?
