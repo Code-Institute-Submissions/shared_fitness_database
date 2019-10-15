@@ -48,7 +48,7 @@ def search():
         orig_query = request.form['query']
         # using regular expression setting option for any case
         query = {'$regex': re.compile('.*{}.*'.format(orig_query)), '$options': 'i'}
-        # find instances of the entered word in title, tags or ingredients
+        # find instances of the entered word in exercise_name, muscle_name, equipment_type or difficulty_level
         results = mongo.db.exercises.find({
             '$or': [
                 {'exercise_name': query},
