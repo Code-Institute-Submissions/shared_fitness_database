@@ -8,10 +8,10 @@
             {% if 'username' in session %}
                 <h3>Welcome back {{ session['username'] }}, lets get training!</h3>
             {% else %}
-                <h3>Find the exercises you need here!</h3>
+                <h3>Welcome to SFDb!</h3>
             {% endif %}
+            <h4>We currently have <span> {{exercises.count()}} </span> exercises for you to explore </h4>
             <div class="intro hide-on-small-only">
-                <h4>We currently have <span> {{exercises.count()}} </span> exercises! </h4>
                 {% if 'username' in session %}
                 <p>
                     Here at SFDb we want to make keeping fit...easy!<br>
