@@ -267,6 +267,7 @@ Alternatively you can use the guest user that I set up for this pupose:
 #### Known Bugs
 When logging in or typing something into an input box, that the user had previously typed into, the autofill options would appear below the input box. If the user clicks on one of these autofill boxes, the background colour would show up as white with black writing, but would take up slightly more space than usual, this effect does not happen if the user types the information in themselves. It doesn’t affect functionality and is just a slight visual bug, of which I am aware of and will fix with future updates.
 
+There is also one bug in the console for an Uncaught TypeError, this is with regards to the JS script provided by code institute to help the select boxes provided by Materialize to function properly. The select boxes do work as they should, so this error doesn't affect functionality.
 ### Deployment
 My application was coded in Pycharm. Once I had created the workspace in Pycharm for my project to be built in, I then turned to GitHub (which is a web-based interface that links with Git and allows you to store and view the different versions of code at the stages it was pushed to the GitHub server) and created a repository for my milestone project, I then went back to Pycharm, and into the terminal I pasted in the Command Line Interface commands that GitHub had provided me with to create a local Git repository and form a link between Git and the GitHub server.
 - echo "# practice" >> README.md
