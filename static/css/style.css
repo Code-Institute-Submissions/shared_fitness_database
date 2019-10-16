@@ -225,10 +225,6 @@ main a.text_links:hover {
 
 
 /* CARDS */
-.card .card-content{
-    height: 18rem;
-    padding-top: 10px;
-}
 .card .card-image img{
     height: 15rem;
 }
@@ -250,15 +246,27 @@ main a.text_links:hover {
     .card .card-title {
         font-size: 1.35rem;
     }
+    .card .card-content{
+        height: 20rem;
+        padding-top: 10px;
+    }
 }
 @media only screen and (max-width: 992px){
     .card .card-title {
         font-size: 1.4rem;
     }
+    .card .card-content{
+        height: 18rem;
+        padding-top: 10px;
+    }
 }
 @media only screen and (min-width: 993px){
     .card .card-title {
         font-size: 1.55rem;
+    }
+    .card .card-content{
+        height: 18rem;
+        padding-top: 10px;
     }
 }
 
