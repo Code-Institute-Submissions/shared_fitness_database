@@ -258,6 +258,12 @@ The devices my friends and family tested on were:
 - iPad Pro
 - Various desktops
 
+Please note that if you are wishing to test the CRUD operations yourself, you can register as a user, but please don’t use sensitive passwords as they currently are just stored in the database.
+
+Alternatively you can use the guest user that I set up for this pupose:
+  - USERNAME: GuestUser
+  - PASSWORD: password
+
 #### Known Bugs
 When logging in or typing something into an input box, that the user had previously typed into, the autofill options would appear below the input box. If the user clicks on one of these autofill boxes, the background colour would show up as white with black writing, but would take up slightly more space than usual, this effect does not happen if the user types the information in themselves. It doesn’t affect functionality and is just a slight visual bug, of which I am aware of and will fix with future updates.
 
