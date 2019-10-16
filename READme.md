@@ -287,7 +287,7 @@ Once the project/website was in the dedicated GitHub repository, it was then abl
 
 I then went to the Heroku dashboard and created a new app called “shared-fitness-database” with Europe as its region. Once the app was created I clicked on the app and went to settings and had to set the Config variables for the PORT, IP, the mongoDB URI string and the secret key for the project. Once these steps were complete I could click on the Deploy tab in the Heroku app dashboard and use the Github deployment method which connects the app to my Github repository, I then turned on automatic deploys, so any changes made to the project that are then pushed to my Github repository are automatically updated on the application once live. All that was left to do was to manually Deploy Branch, this allows you to see a build log for the app being made, but once this step was done the app was deployed on Heroku and was able to be opened and used.
 
-The finished project can be viewed here: **http://shared-fitness-database.herokuapp.com/home**
+The finished project can be viewed here: **https://shared-fitness-database.herokuapp.com/home**
 ### Credits
 ##### Content
 Code for the database website/app was written by myself with knowledge I’ve picked up from the code institute course and from personal study.
