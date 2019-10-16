@@ -246,7 +246,21 @@ main a.text_links:hover {
 .card .card-content p .card-info{
     color: white;
 }
-
+@media only screen and (max-width: 601px){
+    .card .card-title {
+        font-size: 1.35rem;
+    }
+}
+@media only screen and (max-width: 992px){
+    .card .card-title {
+        font-size: 1.4rem;
+    }
+}
+@media only screen and (min-width: 993px){
+    .card .card-title {
+        font-size: 1.55rem;
+    }
+}
 
 /* INDEX */
 /* USER ACCOUNT */
