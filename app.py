@@ -131,7 +131,7 @@ def user_account(account_name):
     # We need ensure the account being accessed using the current url matches the account stored in session.
     if account_name != session.get('username'):
         session.pop('username', None)
-        flash("You were logged out as you may only access your own account page. Please sign in again...")
+        flash("You may only access your own account page. Please sign in again...")
         return redirect(url_for('log_in'))
     else:
         user = mongo.db.users.find_one({"user_name": account_name})
