@@ -242,21 +242,12 @@ main a.text_links:hover {
 .card .card-content p .card-info{
     color: white;
 }
-@media only screen and (max-width: 601px){
-    .card .card-title {
-        font-size: 1.35rem;
-    }
-    .card .card-content{
-        height: 20rem;
-        padding-top: 10px;
-    }
-}
 @media only screen and (max-width: 992px){
     .card .card-title {
         font-size: 1.4rem;
     }
     .card .card-content{
-        height: 18rem;
+        height: 20rem;
         padding-top: 10px;
     }
 }
