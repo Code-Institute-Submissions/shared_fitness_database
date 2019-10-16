@@ -297,21 +297,21 @@ Helped with the code for the try block for my favourite function by Dave Laffan 
 
 ##### Media
 SIDE-NAV BACKGROUND PICTURE: 
-*http://www.peakpx.com/593658/grayscale-photograph-of-gym*
+- *http://www.peakpx.com/593658/grayscale-photograph-of-gym*
 
 DUMBBELLS BACKGROUND PICTURE:
-*https://www.pexels.com/photo/dark-dumbbell-fitness-muscle-training-302663/* 
+- *https://www.pexels.com/photo/dark-dumbbell-fitness-muscle-training-302663/* 
 
 WEBSITE LOGO MADE AT:
-*https://www.freelogodesign.org/* 
+- *https://www.freelogodesign.org/* 
 
 EXERCISE CARD PICTURES:
-*https://upload.wikimedia.org/wikipedia/commons/f/f7/Bench-press-2.png*
-*https://upload.wikimedia.org/wikipedia/commons/e/e6/Reverse-grip-bent-over-rows-2.png*
-*https://upload.wikimedia.org/wikipedia/commons/0/0c/Squats-2-2.png*
-*https://upload.wikimedia.org/wikipedia/commons/8/86/Bicep-hammer-curl-2.png*
-*https://upload.wikimedia.org/wikipedia/commons/d/db/Close-grip-ez-bar-curl-2.png*
-*https://upload.wikimedia.org/wikipedia/commons/7/73/Push-ups-3-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/f/f7/Bench-press-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/e/e6/Reverse-grip-bent-over-rows-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/0/0c/Squats-2-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/8/86/Bicep-hammer-curl-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/d/db/Close-grip-ez-bar-curl-2.png*
+- *https://upload.wikimedia.org/wikipedia/commons/7/73/Push-ups-3-2.png*
 
 The above URLs for images were used for my entries into the website, which were all done using the add exercise form. The images were from Wikimedia, they were free to use and the Author of these pictures is: “Everkinetic”.
 
